@@ -20,6 +20,11 @@ class Game
     @players.each do |player|
       player.draw
     end
+		@map.points.each do |point|
+			if point.get_event
+				point.get_event.draw
+			end
+		end
 
     if @dicing
       @dice.rotate
@@ -29,7 +34,8 @@ class Game
       end
     else
       @dice.draw
-      @move_counter = @dice.current_num if @move_counter == 0.0
+      #@move_counter = @dice.current_num if @move_counter == 0.0
+			@move_counter = 1 if @move_counter == 0.0
       @move_counter = @players[@current_player_num].move(@move_counter)
       if @move_counter <= 0.0
         @players[@current_player_num].check_event

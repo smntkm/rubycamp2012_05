@@ -1,5 +1,7 @@
 # coding: utf-8
 
+require "#{File.dirname(__FILE__)}/game/event"
+
 class Title
   def initialize
     bg_file = File.join(File.dirname(__FILE__), "..", "images", "title_bg.png")
