@@ -14,8 +14,10 @@ class Player
   def move(counter)
     @pos += @step
     @x, @y = @map.get_point_pos(@pos.to_i)
-    if @pos.to_i == @map.points.size - 1
-      Scene.set_scene(:ending)
+    if @pos.to_i == @map.points.size - 1 #13
+			#pos = @pos.to_i % (@map.points.size -1)
+			
+      #Scene.set_scene(:ending)
     end
     return counter - @step.abs
   end
