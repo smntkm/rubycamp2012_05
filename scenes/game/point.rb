@@ -13,15 +13,15 @@ class Point
   end
 
   def event flag = 1
-		unless @event
-    	return false
-		end
-		
-		if flag == 1
-    	@event.exec true
-		else
-			@event.exec false
-		end
+	unless @event
+    return false
+	end
+	
+	if flag == 1
+    @event.exec true
+	else
+		@event.exec false
+	end
   end
 
   def draw

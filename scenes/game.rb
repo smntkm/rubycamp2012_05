@@ -9,7 +9,7 @@ class Game
     @all_items = []
     @map = Map.new
     #@players = [Player.new(@map), Player.new(@map)]
-		@players = [Player.new(@map)]
+	@players = [Player.new(@map)]
     @current_player_num = 0
     @dice = Dice.new
     @dicing = true
@@ -32,7 +32,7 @@ class Game
       @dice.draw
       if Input.keyPush?(K_SPACE)
         @dicing = false
-				@players[@current_player_num].check_event 0
+		@players[@current_player_num].check_event 0
       end
     else
       @dice.draw
