@@ -3,7 +3,7 @@ require 'dxruby'
 
 class Event
   def initialize
-		explanation_file = File.join(File.dirname(__FILE__), "..","..", "images", "dice1.png")
+	explanation_file = File.join(File.dirname(__FILE__), "..","..", "images", "dice1.png")
     @explanation_img = Image.load(explanation_file)
   end
 
