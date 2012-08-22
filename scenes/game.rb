@@ -44,10 +44,6 @@ class Game
       @dice.draw
       if Input.keyPush?(K_SPACE)
         @dicing = false
-<<<<<<< HEAD
-=======
-		@players[@current_player_num].check_event 0
->>>>>>> 9fd9c9a8218cf5832993760673a2287ad4782804
       end
     else
       @dice.draw
