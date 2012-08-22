@@ -42,13 +42,14 @@ class Map
   end
 
   def get_point_pos(pos)
+	  p pos
     return @points[pos].x, @points[pos].y
   end
 
   def draw
     Window.draw(0, 0, @map_img)
-    @points.each do |point|
-      point.draw
-    end
+   # @points.each do |point|
+   #   point.draw
+   # end
   end
 end
