@@ -5,15 +5,19 @@ require_relative 'game/player'
 require_relative 'game/dice'
 
 class Game
+
+	attr_accessor :stopping
+
   def initialize
     @all_items = []
-    @map = Map.new
+    @map = Map.new self
     #@players = [Player.new(@map), Player.new(@map)]
 		@players = [Player.new(@map)]
     @current_player_num = 0
     @dice = Dice.new
     @dicing = true
     @move_counter = 0.0
+		@stopping = false
   end
 
   def play
@@ -26,13 +30,20 @@ class Game
 				point.get_event.draw
 			end
 		end
+		if @stopping
+			if Input.keyPush?(K_SPACE)
+				@players[@current_player_num].check_event 0
+				@stopping = false
+      end
+			return false
+		end
+
 
     if @dicing
       @dice.rotate
       @dice.draw
       if Input.keyPush?(K_SPACE)
         @dicing = false
-				@players[@current_player_num].check_event 0
       end
     else
       @dice.draw
