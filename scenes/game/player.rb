@@ -1,6 +1,8 @@
 # coding: utf-8
 
 class Player
+  attr_accessor :map, :pos
+  
   def initialize(map)
     @map = map
     @pos = rand(30)
@@ -8,7 +10,6 @@ class Player
     img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "player.png")
     @img = Image.load(img_file)
     @step = 0.1
-    @score = 0
   end
 
   def move(counter)
