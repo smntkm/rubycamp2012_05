@@ -26,7 +26,6 @@ class Player
   end
 
   def draw
-    puts "#{@x},#{@y}"
     Window.draw(@x, @y, @img)
   end
 end
