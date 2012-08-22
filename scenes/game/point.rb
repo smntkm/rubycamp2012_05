@@ -1,9 +1,9 @@
 # coding: utf-8
 
 class Point
-  attr_accessor :x, :y, :visited_by, :event
+  attr_accessor :x, :y, :ref_point
 
-  def initialize(x, y, opt = {})
+  def initialize(x, y, point_image, opt = {})
     @x = x
     @y = y
     @img_flag = opt[:image] || true
@@ -13,18 +13,19 @@ class Point
     @blue = Image.load(blue_file)
     @red = Image.load(red_file)
     @visited_by = nil
+	@ref_point = []
   end
 
   def event flag = 1
-	unless @event
-      return false
-	end
-	
-	if flag == 1
-      @event.exec true
-	else
-	  @event.exec false
-	end
+		unless @event
+    	return false
+		end
+		
+		if flag == 1
+    	@event.exec true
+		else
+			@event.exec false
+		end
   end
 
   def draw(current_player_num)
@@ -36,7 +37,7 @@ class Point
 	end
   end
 
-  def get_event
-	return @event
-  end
+	def get_event
+		return @event
+	end
 end
