@@ -9,19 +9,22 @@ class Player
     img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "player.png")
     @img = Image.load(img_file)
     @step = 0.1
+    @score = 0
   end
 
   def move(counter)
     @pos += @step
     @x, @y = @map.get_point_pos(@pos.to_i)
-    if @pos.to_i == @map.points.size - 1
-      Scene.set_scene(:ending)
+    if @pos.to_i == @map.points.size - 1 #13
+			#pos = @pos.to_i % (@map.points.size -1)
+			
+      #Scene.set_scene(:ending)
     end
     return counter - @step.abs
   end
 
-  def check_event
-    @map.points[@pos.to_i].event
+  def check_event flag
+    @map.points[@pos.to_i].event flag
   end
 
   def draw
