@@ -10,7 +10,6 @@ class Map
     map_file = File.join(File.dirname(__FILE__), "..", "..", "images", "map.png")
     @map_img = Image.load(map_file)
     @points = []
-<<<<<<< HEAD
     @points << Point.new(243, 65, "point.png") #1
     @points << Point.new(321, 125, "point.png") #2
     @points << Point.new(382, 166, "point.png") #3

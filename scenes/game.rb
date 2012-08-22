@@ -12,7 +12,7 @@ class Game
     @all_items = []
     @map = Map.new self
     #@players = [Player.new(@map), Player.new(@map)]
-	@players = [Player.new(@map)]
+		@players = [Player.new(@map)]
     @current_player_num = 0
     @dice = Dice.new
     @dicing = true
@@ -48,22 +48,22 @@ class Game
     else
       @dice.draw
       #@move_counter = @dice.current_num if @move_counter == 0.0
-	  #検証用　サイコロが常に１になる
-	  if @move_counter == 0.0
-        @move_counter = 1
+		  #検証用　サイコロが常に１になる
+		  if @move_counter == 0.0
+	        @move_counter = 1
+		  end
+	      @move_counter = @players[@current_player_num].move(@move_counter)
+	      if @move_counter <= 0.0
+			  current_player = @players[@current_player_num]
+			unless current_player.map.points[current_player.pos].visited 
+	          current_player.check_event 1
+			  current_player.map.points[current_player.pos].visited = true
+			end
+	        @dicing = true
+	        @move_counter = 0.0
+	        @current_player_num += 1
+	        @current_player_num = 0 if @current_player_num == @players.size
+	    end
 	  end
-      @move_counter = @players[@current_player_num].move(@move_counter)
-      if @move_counter <= 0.0
-		  current_player = @players[@current_player_num]
-		unless current_player.map.points[current_player.pos].visited 
-          current_player.check_event 1
-		  current_player.map.points[current_player.pos].visited = true
-		end
-        @dicing = true
-        @move_counter = 0.0
-        @current_player_num += 1
-        @current_player_num = 0 if @current_player_num == @players.size
-      end
-    end
   end
 end
