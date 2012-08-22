@@ -1,7 +1,7 @@
 # coding: utf-8
 
 class Point
-  attr_accessor :x, :y
+  attr_accessor :x, :y, :ref_point
 
   def initialize(x, y, point_image, opt = {})
     @x = x
@@ -10,6 +10,7 @@ class Point
     @event = opt[:event]
     img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "#{point_image}")
     @point_img = Image.load(img_file)
+		@ref_point = []
   end
 
   def event flag = 1
