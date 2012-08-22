@@ -13,6 +13,7 @@ class Player
 
   def move(counter)
     @pos += @step
+	@pos -= @map.points.length if @pos >= @map.points.length
     @x, @y = @map.get_point_pos(@pos.to_i)
     if @pos.to_i == @map.points.size - 1 #13
 	#@pos = @pos.to_i % (@map.points.size -1)
