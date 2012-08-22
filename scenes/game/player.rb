@@ -20,8 +20,8 @@ class Player
     return counter - @step.abs
   end
 
-  def check_event
-    @map.points[@pos.to_i].event
+  def check_event flag
+    @map.points[@pos.to_i].event flag
   end
 
   def draw

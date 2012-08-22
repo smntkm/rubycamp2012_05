@@ -12,9 +12,16 @@ class Point
     @point_img = Image.load(img_file)
   end
 
-  def event
-    return false unless @event
-    @event.exec
+  def event flag = 1
+		unless @event
+    	return false
+		end
+		p flag
+		if flag == 1
+    	@event.exec true
+		else
+			@event.exec false
+		end
   end
 
   def draw

@@ -7,8 +7,8 @@ class Event
     @explanation_img = Image.load(explanation_file)
   end
 
-  def exec
-		@flag = true
+  def exec flag
+		@flag = flag
   end
 
 	def draw

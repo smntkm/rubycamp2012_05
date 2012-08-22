@@ -6,8 +6,8 @@ require_relative 'lib/scene'
 require_relative 'lib/util'
 
 Window.caption = "Board Game Sample"
-Window.width   = 800
-Window.height  = 600
+Window.width   = 1000
+Window.height  = 800
 
 Scene.load_scenes
 

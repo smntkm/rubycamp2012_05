@@ -8,7 +8,8 @@ class Game
   def initialize
     @all_items = []
     @map = Map.new
-    @players = [Player.new(@map), Player.new(@map)]
+    #@players = [Player.new(@map), Player.new(@map)]
+		@players = [Player.new(@map)]
     @current_player_num = 0
     @dice = Dice.new
     @dicing = true
@@ -31,14 +32,17 @@ class Game
       @dice.draw
       if Input.keyPush?(K_SPACE)
         @dicing = false
+				@players[@current_player_num].check_event 0
       end
     else
       @dice.draw
       #@move_counter = @dice.current_num if @move_counter == 0.0
-			@move_counter = 1 if @move_counter == 0.0
+			if @move_counter == 0.0
+				@move_counter = 1
+			end
       @move_counter = @players[@current_player_num].move(@move_counter)
       if @move_counter <= 0.0
-        @players[@current_player_num].check_event
+        @players[@current_player_num].check_event 1
         @dicing = true
         @move_counter = 0.0
         @current_player_num += 1
