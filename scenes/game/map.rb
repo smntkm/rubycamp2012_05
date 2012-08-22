@@ -14,7 +14,7 @@ class Map
     @points << Point.new(321, 125, "point.png")
     @points << Point.new(382, 166, "point.png")
     @points << Point.new(442, 217, "point.png")
-    @points << Point.new(492, 262, "point.png")
+    @points << Point.new(492, 262, "point.png", event: Event.new("matsuejo.png"))
     @points << Point.new(559, 210, "point.png")
     @points << Point.new(620, 144, "point.png", event: Event.new("matsuejo.png"))
     @points << Point.new(721, 124, "point.png")

@@ -10,14 +10,13 @@ class Point
     @event = opt[:event]
     img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "#{point_image}")
     @point_img = Image.load(img_file)
-    @ivent = false #イベント発生でtrue
   end
 
   def event flag = 1
 		unless @event
     	return false
 		end
-		p flag
+		
 		if flag == 1
     	@event.exec true
 		else

@@ -36,11 +36,11 @@ class Game
       end
     else
       @dice.draw
-      @move_counter = @dice.current_num if @move_counter == 0.0
+      #@move_counter = @dice.current_num if @move_counter == 0.0
 			#検証用　サイコロが常に１になる
-			#if @move_counter == 0.0
-			#	@move_counter = 1
-			#end
+			if @move_counter == 0.0
+				@move_counter = 1
+			end
       @move_counter = @players[@current_player_num].move(@move_counter)
       if @move_counter <= 0.0
         @players[@current_player_num].check_event 1
