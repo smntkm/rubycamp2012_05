@@ -24,4 +24,8 @@ class Scene
   def self.play
     @@scenes[@@current_scene_name].play
   end
+
+	def self.scenes
+		return @@scenes
+	end
 end
