@@ -38,19 +38,27 @@ class Game
 		@players.each do |player|
 			player.draw
 		end
-
 		#スペースキーを押したら画像の表示を消す
+
 		if @stopping
 			if Input.keyPush?(K_SPACE)
+
+                
 				current_player.check_event 0
 				@stopping = false
 				@dicing = true
 				
-				if current_player.map.points[current_player.pos % 29].visited_by.nil? && @move_counter == 0
-					current_player.map.points[current_player.pos % 29].visited_by = @current_player_num
-				end
-			end
+                if current_player.map.points[current_player.pos % 29].visited_by.nil? #&& current_player.map.points[current_player.pos % 29].get_event
+                  current_player.map.points[current_player.pos % 29].visited_by = @current_player_num
+                end
 
+                #stoppingを抜けたらターン交代
+                @current_player_num += 1
+                @current_player_num %= 2
+	            #@current_player_num = 0 if @current_player_num == @players.size
+
+			end
+          
 			@map.points.each do |point|
 				if point.get_event
 					point.get_event.draw if current_player.map.points[current_player.pos % 29].visited_by.nil?
@@ -80,8 +88,7 @@ class Game
 				if @move_counter == 0
 					@stopping = true
 					@players[@current_player_num].check_event 1
-					@current_player_num += 1
-					@current_player_num = 0 if @current_player_num == @players.size
+
 				end
 				@direction = nil
 			end

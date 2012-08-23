@@ -5,7 +5,8 @@ class Player
 
 	def initialize(map, player_file_name)
 		@map = map
-		@pos = rand(30)
+		#@pos = rand(30)
+        @pos = 4#石見銀山スタートで決めうち
 		@x, @y = @map.get_point_pos(@pos.to_i)
 		img = File.join(File.dirname(__FILE__), "..", "..", "images", player_file_name)
 		@player_img = Image.load(img)
@@ -50,6 +51,6 @@ class Player
 	end
 
 	def draw
-		Window.draw(@x, @y, @player_img)
+		Window.draw(@x-20, @y-20, @player_img)
 	end
 end

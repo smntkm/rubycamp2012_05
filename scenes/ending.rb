@@ -48,12 +48,15 @@ class Ending
 
   def play
 
-		@foo.each do | point |
-				if @score1 + @score2 < 10
-					@score1 += 1 if point.visited_by == 0
-					@score2 += 1 if point.visited_by == 1
-				end
-		end
+    @foo.each do | point |
+      if point.get_event
+        if @score1 + @score2 < 10
+          p point.visited_by
+          @score1 += 1 if point.visited_by == 0
+          @score2 += 1 if point.visited_by == 1
+        end
+      end
+    end
 
     Window.draw(0, 0, @background_img)
     Window.drawFont(@title_x, 60, @title_str, @title_font, color: Util::YELLOW)
