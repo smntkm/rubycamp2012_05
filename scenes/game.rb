@@ -23,6 +23,7 @@ class Game
 		current_player = @players[@current_player_num]
 
 		if current_player.map.is_cleared? #Jump to Ending Scene if the stage is cleared.
+			Scene.scenes[:ending].foo = @map.points
 			Scene.set_scene(:ending)
 		end
 
