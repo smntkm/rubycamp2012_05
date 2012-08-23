@@ -11,7 +11,6 @@ class Event
 
   def exec flag
     @flag = flag
-    #@game.stopping = true
   end
 
   def draw

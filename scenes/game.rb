@@ -38,20 +38,23 @@ class Game
 			player.draw
 		end
 
-		if current_player.map.points[current_player.pos % 29].visited_by != @current_player_num && @move_counter == 0
-			current_player.map.points[current_player.pos % 29].visited_by = @current_player_num
-		end
+		p @move_counter
 
 		#スペースキーを押したら画像の表示を消す
 		if @stopping
-			if Input.keyPush?(K_S)
+			if Input.keyPush?(K_SPACE)
 				current_player.check_event 0
 				@stopping = false
 				@dicing = true
+				
+				if current_player.map.points[current_player.pos % 29].visited_by != @current_player_num && @move_counter == 0
+					current_player.map.points[current_player.pos % 29].visited_by = @current_player_num
+				end
 			end
+
 			@map.points.each do |point|
 				if point.get_event
-					point.get_event.draw
+					point.get_event.draw if current_player.map.points[current_player.pos % 29].visited_by.nil?
 				end
 			end
 			return false
@@ -64,9 +67,6 @@ class Game
 				@dicing = false
 			end
 		else
-			unless current_player.map.points[current_player.pos % 29].visited_by == @current_player_num
-				current_player.map.points[current_player.pos % 29].visited_by = @current_player_num
-			end
 			@dice.draw
 
 			#行きたい方向を決める
