@@ -17,7 +17,7 @@ class Game
     @dice = Dice.new
     @dicing = true
     @move_counter = 0.0
-		@stopping = false
+	@stopping = false
   end
 
   def play
@@ -74,7 +74,7 @@ class Game
 	  if @move_counter == 0.0
         @move_counter = 1
 	  end
-      @move_counter = @players[@current_player_num].move(@move_counter)
+      @move_counter = @players[@current_player_num].move(@move_counter, @direction)
       if @move_counter <= 0.0
 		current_player = @players[@current_player_num]
 		unless current_player.map.points[current_player.pos].visited_by == @current_player_num

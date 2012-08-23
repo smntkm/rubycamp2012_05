@@ -12,7 +12,6 @@ class Player
     #@step = 0.1
   end
 
-<<<<<<< HEAD
   def move(counter, direction)
     # 十字キーの入力を待つ
     # 十字キーの方向に対応する位置へ移動する
@@ -38,17 +37,6 @@ class Player
       #Scene.set_scene(:ending)
     #end
     return counter - 1
-=======
-  def move(counter)
-    @pos += @step
-	@pos -= @map.points.length if @pos >= @map.points.length
-    @x, @y = @map.get_point_pos(@pos.to_i)
-    if @pos.to_i == @map.points.size - 1 #13
-	#@pos = @pos.to_i % (@map.points.size -1)
-	#Scene.set_scene(:ending)
-    end
-    return counter - @step.abs
->>>>>>> e9afa3ef4ac9762ff2b11b2230999f3f13e1ab15
   end
 
   def check_event flag
