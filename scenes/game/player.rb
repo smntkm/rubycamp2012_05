@@ -15,6 +15,7 @@ class Player
   def move(counter, direction)
     # 十字キーの入力を待つ
     # 十字キーの方向に対応する位置へ移動する
+		point  = 0
 	  begin
 		case direction 
 		when 0
@@ -31,16 +32,13 @@ class Player
 			@x, @y = point.x, point.y
 		end
 		@pos += 1
-	  rescue
-		 p 'error occured!!'
-		 return counter
+	  rescue => e
+		  p 'error occured!!'
+		  return counter
 	  end
-    #@x, @y = @map.get_point_pos(@pos.to_i)
-    #if @pos.to_i == @map.points.size - 1
-			#@pos = @pos.to_i % (@map.points.size -1)
-			
-      #Scene.set_scene(:ending)
-    #end
+    
+		@pos = @map.get_points_index point
+
     return counter - 1
   end
 
@@ -48,9 +46,9 @@ class Player
     @map.points[@pos.to_i % 29].set_event_flag flag
   end
 
-  def remove_all_event_pictures
-	  @map.points.each do |point|
-		  point.set_event_flag 0
+	def remove_all_event_pictures	  
+		@map.points.each do |point|
+			point.set_event_flag 0
 	  end
   end
 

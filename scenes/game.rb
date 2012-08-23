@@ -73,7 +73,7 @@ class Game
 				@move_counter = @dice.current_num if @move_counter == 0
 				@move_counter = @players[@current_player_num].move(@move_counter, @direction)
 				if @move_counter <= 0
-					@players[@current_player_num].check_event 1
+					@players[@current_player_num].check_event 1 if @move_counter == 1
 					@dicing = true
 					@move_counter = 0
 					@current_player_num += 1

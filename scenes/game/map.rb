@@ -21,23 +21,23 @@ class Map
     @points << Point.new(810, 109, event: Event.new("matsuejo.png", game))
     @points << Point.new(772, 152) #10
     @points << Point.new(738, 192, event: Event.new("tatara.png", game))
-	@points << Point.new(804, 195)
-	@points << Point.new(854, 199)
-	@points << Point.new(908, 200, event: Event.new("yasukibushi.png", game))
-	@points << Point.new(850, 259) #15
-	@points << Point.new(792, 302, event: Event.new("soroban.png", game))
-	@points << Point.new(639, 379)
-	@points << Point.new(635, 274)
-	@points << Point.new(496, 448)
-	@points << Point.new(286, 545) #20
-	@points << Point.new( 43, 641, event: Event.new("ougai.png", game))
-	@points << Point.new(104, 588)
-	@points << Point.new(161, 537, event: Event.new("grantowa.png", game))
-	@points << Point.new(223, 481)
-	@points << Point.new(280, 442, event: Event.new("aquas.png", game)) #25
-	@points << Point.new(495, 363)
-	@points << Point.new(273, 329)
-	@points << Point.new(382, 297)
+		@points << Point.new(804, 195)
+		@points << Point.new(854, 199)
+		@points << Point.new(908, 200, event: Event.new("yasukibushi.png", game))
+		@points << Point.new(850, 259) #15
+		@points << Point.new(792, 302, event: Event.new("soroban.png", game))
+		@points << Point.new(639, 379)
+		@points << Point.new(635, 274)
+		@points << Point.new(496, 448)
+		@points << Point.new(286, 545) #20
+		@points << Point.new( 43, 641, event: Event.new("ougai.png", game))
+		@points << Point.new(104, 588)
+		@points << Point.new(161, 537, event: Event.new("grantowa.png", game))
+		@points << Point.new(223, 481)
+		@points << Point.new(280, 442, event: Event.new("aquas.png", game)) #25
+		@points << Point.new(495, 363)
+		@points << Point.new(273, 329)
+		@points << Point.new(382, 297)
     @points << Point.new(259, 213, image: false) #29
 
 	#1
@@ -59,7 +59,7 @@ class Map
 	#5
 	@points[4].ref_point[0] = @points[3]
 	@points[4].ref_point[1] = @points[15]
-	@points[4].ref_point[2] = @points[28]
+	@points[4].ref_point[2] = @points[27]
 	@points[4].ref_point[3] = @points[5]
 
 	#6
@@ -137,8 +137,8 @@ class Map
 	@points[21].ref_point[3] = @points[20]
 
 	#23
-	@points[22].ref_point[2] = @points[23]
-	@points[22].ref_point[3] = @points[21]
+	@points[22].ref_point[2] = @points[21]
+	@points[22].ref_point[3] = @points[23]
 
 	#24
 	@points[23].ref_point[2] = @points[22]
@@ -180,4 +180,9 @@ class Map
 	  #   point.draw
 	  # end
   end
+
+	def get_points_index(target)
+		pos = @points.find_index{|point| point == target}
+		return pos
+	end
 end
