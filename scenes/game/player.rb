@@ -15,20 +15,24 @@ class Player
   def move(counter, direction)
     # 十字キーの入力を待つ
     # 十字キーの方向に対応する位置へ移動する
+	  begin
 		case direction 
 		when 0
-      p point = @map.points[@pos.to_i].ref_point[0]
+			point = @map.points[@pos.to_i].ref_point[0]
 			@x, @y = point.x, point.y
 		when 1
-			p @map.points[@pos.to_i].ref_point[1].class
+			point = @map.points[@pos.to_i].ref_point[1]
 			@x, @y = point.x, point.y
 		when 2
-			p point = @map.points[@pos.to_i].ref_point[2]
+			point = @map.points[@pos.to_i].ref_point[2]
 			@x, @y = point.x, point.y
 		when 3
-			p point = @map.points[@pos.to_i].ref_point[3]
+			point = @map.points[@pos.to_i].ref_point[3]
 			@x, @y = point.x, point.y
 		end
+	  rescue
+		 p 'error occured!!'
+	  end
 		@pos += 1
     #@x, @y = @map.get_point_pos(@pos.to_i)
     #if @pos.to_i == @map.points.size - 1
@@ -40,7 +44,7 @@ class Player
   end
 
   def check_event flag
-    @map.points[@pos.to_i].event flag
+    @map.points[@pos.to_i % 29].event flag
   end
 
   def draw
