@@ -170,8 +170,7 @@ class Map
   end
 
   def get_point_pos(pos)
-	  pos %= 29 if pos > 29
-	  return @points[pos].x, @points[pos].y
+	  return @points[pos % 29].x, @points[pos % 29].y
   end
 
   def draw

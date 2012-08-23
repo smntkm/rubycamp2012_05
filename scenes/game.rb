@@ -32,13 +32,16 @@ class Game
 			player.draw
 		end
 
-		@map.points.each do |point|
-			if point.get_event
-				point.get_event.draw
-			end
-		end
+	#	@map.points.each do |point|
+	#		if point.get_event
+	#			point.get_event.draw
+	#		end
+	#	end
 
 		current_player = @players[@current_player_num]
+		if current_player.map.points[current_player.pos % 29].visited_by != @current_player_num && @move_counter == 0
+			current_player.map.points[current_player.pos % 29].visited_by = @current_player_num
+		end
 		
 		#スペースキーを押したら画像の表示を消す
 		if @stopping
@@ -57,17 +60,13 @@ class Game
 				@dicing = false
 			end
 		else
-			unless current_player.map.points[current_player.pos % 29].visited_by == @current_player_num
-				#current_player.check_event 1
-				current_player.map.points[current_player.pos % 29].visited_by = @current_player_num
-			end
 			@dice.draw
 
 			#行きたい方向を決める
 			@direction = 0 if Input.keyPush?(K_UP) #上
-			@direction = 1 if Input.keyPush?(K_DOWN)#下
+			@direction = 1 if Input.keyPush?(K_DOWN) #下
 			@direction = 2 if Input.keyPush?(K_LEFT) #左
-			@direction = 3 if Input.keyPush?(K_RIGHT)#右
+			@direction = 3 if Input.keyPush?(K_RIGHT) #右
 
 			if @direction
 				@move_counter = @dice.current_num if @move_counter == 0
