@@ -58,7 +58,7 @@ class Map
 
 	#5
 	@points[4].ref_point[0] = @points[3]
-	@points[4].ref_point[1] = @points[15]
+	@points[4].ref_point[1] = @points[25]
 	@points[4].ref_point[2] = @points[27]
 	@points[4].ref_point[3] = @points[5]
 
@@ -133,8 +133,8 @@ class Map
 	@points[20].ref_point[3] = @points[19]
 
 	#22
-	@points[21].ref_point[2] = @points[22]
-	@points[21].ref_point[3] = @points[20]
+	@points[21].ref_point[2] = @points[20]
+	@points[21].ref_point[3] = @points[22]
 
 	#23
 	@points[22].ref_point[2] = @points[21]
