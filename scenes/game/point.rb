@@ -1,9 +1,9 @@
 # coding: utf-8
 
 class Point
-  attr_accessor :x, :y, :ref_point
+  attr_accessor :x, :y, :ref_point, :visited_by
 
-  def initialize(x, y, point_image, opt = {})
+  def initialize(x, y, opt = {})
     @x = x
     @y = y
     @img_flag = opt[:image] || true

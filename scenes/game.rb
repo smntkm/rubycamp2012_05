@@ -72,8 +72,7 @@ class Game
 			if Input.keyPush?(K_RIGHT) #‰E
 				@direction = 3
 			end
-      
-      @move_counter = @players[@current_player_num].move(@move_counter)
+
       if @move_counter <= 0.0
 				current_player = @players[@current_player_num]
 				unless current_player.map.points[current_player.pos].visited_by == @current_player_num
