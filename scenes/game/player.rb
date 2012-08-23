@@ -30,10 +30,11 @@ class Player
 			point = @map.points[@pos.to_i].ref_point[3]
 			@x, @y = point.x, point.y
 		end
+		@pos += 1
 	  rescue
 		 p 'error occured!!'
+		 return counter
 	  end
-		@pos += 1
     #@x, @y = @map.get_point_pos(@pos.to_i)
     #if @pos.to_i == @map.points.size - 1
 			#@pos = @pos.to_i % (@map.points.size -1)
@@ -44,7 +45,7 @@ class Player
   end
 
   def check_event flag
-    @map.points[@pos.to_i % 29].event flag
+    @map.points[@pos.to_i % 29].set_event_flag flag
   end
 
   def draw

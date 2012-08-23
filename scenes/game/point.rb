@@ -16,7 +16,7 @@ class Point
 		@ref_point = []
 	end
 
-	def show_event flag = 0
+	def set_event_flag flag = 0
 		unless @event
 			return false
 		end
