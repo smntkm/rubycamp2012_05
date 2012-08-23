@@ -39,25 +39,24 @@ class Game
 		end
 
 		#スペースキーを押したら画像の表示を消す
+		current_player = @players[@current_player_num]
+
 		if @stopping
 			if Input.keyPush?(K_SPACE)
-				@players[@current_player_num].check_event 0
+				current_player.check_event 0
 				@stopping = false
 			end
 			return false
 		end
 
 		if @dicing
+		  current_player.remove_all_event_pictures	
 			@dice.rotate
 			@dice.draw
 			if Input.keyPush?(K_SPACE)
 				@dicing = false
 			end
-			@players.each do |player|
-				player.check_event 0 
-			end
 		else
-			current_player = @players[@current_player_num]
 			unless current_player.map.points[current_player.pos % 29].visited_by == @current_player_num
 				current_player.check_event 1
 				current_player.map.points[current_player.pos % 29].visited_by = @current_player_num

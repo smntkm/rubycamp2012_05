@@ -17,6 +17,7 @@ class Point
 	end
 
 	def set_event_flag flag = 0
+		p "flag is #{flag}"
 		unless @event
 			return false
 		end

@@ -48,6 +48,12 @@ class Player
     @map.points[@pos.to_i % 29].set_event_flag flag
   end
 
+  def remove_all_event_pictures
+	  @map.points.each do |point|
+		  point.set_event_flag 0
+	  end
+  end
+
   def draw
     Window.draw(@x, @y, @img)
   end
