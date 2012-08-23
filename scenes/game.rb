@@ -5,7 +5,6 @@ require_relative 'game/player'
 require_relative 'game/dice'
 
 class Game
-
 	attr_accessor :stopping
 
   def initialize
@@ -22,14 +21,24 @@ class Game
 
   def play
     @map.draw
+
+		@players.each_with_index do |player, player_number|
+			player.map.points.each do |point|
+				point.draw(player_number) if point.visited_by == player_number && point.event
+			end
+		end
+
     @players.each do |player|
       player.draw
     end
+
 		@map.points.each do |point|
 			if point.get_event
 				point.get_event.draw
 			end
 		end
+
+		#スペースキーを押したら画像の表示を消す
 		if @stopping
 			if Input.keyPush?(K_SPACE)
 				@players[@current_player_num].check_event 0
@@ -38,32 +47,60 @@ class Game
 			return false
 		end
 
-
     if @dicing
       @dice.rotate
       @dice.draw
       if Input.keyPush?(K_SPACE)
         @dicing = false
+				@players.each do |player|
+					player.check_event 0
+				end
       end
     else
       @dice.draw
-      #@move_counter = @dice.current_num if @move_counter == 0.0
-		  #検証用　サイコロが常に１になる
-		  if @move_counter == 0.0
-	        @move_counter = 1
-		  end
-	      @move_counter = @players[@current_player_num].move(@move_counter)
-	      if @move_counter <= 0.0
-			  current_player = @players[@current_player_num]
-			unless current_player.map.points[current_player.pos].visited 
-	          current_player.check_event 1
-			  current_player.map.points[current_player.pos].visited = true
+			
+			#行きたい方向を決める
+      if Input.keyPush?(K_UP) #上
+        @direction = 0
+      end
+			if Input.keyPush?(K_DOWN) #下
+        @direction = 1
+      end
+			if Input.keyPush?(K_LEFT) #左
+        @direction = 2
 			end
-	        @dicing = true
-	        @move_counter = 0.0
-	        @current_player_num += 1
-	        @current_player_num = 0 if @current_player_num == @players.size
-	    end
-	  end
-  end
+			if Input.keyPush?(K_RIGHT) #右
+				@direction = 3
+			end
+      
+      @move_counter = @players[@current_player_num].move(@move_counter)
+      if @move_counter <= 0.0
+				current_player = @players[@current_player_num]
+				unless current_player.map.points[current_player.pos].visited_by == @current_player_num
+          current_player.check_event 1
+		  		current_player.map.points[current_player.pos].visited_by = @current_player_num
+				end
+      	if @direction
+	        @move_counter = @dice.current_num if @move_counter == 0.0
+	  			#検証用　サイコロが常に１になる
+	  			#if @move_counter == 0.0
+	  			#	@move_counter = 1
+	  			#end
+	        @move_counter = @players[@current_player_num].move(@move_counter, @direction)
+	        if @move_counter <= 0.0
+	          @players[@current_player_num].check_event 1
+	          @dicing = true
+	          @move_counter = 0.0
+	          @current_player_num += 1
+	          @current_player_num = 0 if @current_player_num == @players.size
+	        end
+	        @direction = nil
+	      end
+    	end
+			#プレイヤーの画像を表示
+	    @players.each do |player|
+	      player.draw
+    	end
+ 		end
+	end
 end

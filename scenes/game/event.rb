@@ -15,6 +15,6 @@ class Event
   end
 
   def draw
-	Window.draw(300,200 , @explanation_img) if @flag
+		Window.draw(300,200 , @explanation_img) if @flag
   end
 end
