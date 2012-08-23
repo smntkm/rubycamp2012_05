@@ -6,7 +6,7 @@ class Ending
     @background_img = Image.load(bg_file)
 
     @title_font = Font.new(64, "ＭＳ ゴシック", weight: true)
-    @title_str = "ゲームクリア！！"
+    @title_str = "ゲームクリア！!"
     @title_x = Util.get_center(@title_str, @title_font)
 
     @description_font = Font.new(24, "ＭＳ ゴシック", weight: true)
@@ -15,9 +15,24 @@ class Ending
   end
 
   def play
+    
+    blue_point=0
+    red_point=0
+
+    29.times do |i|
+      if @map.points[i].visited_by == 0
+        bule_point += 1
+      else
+        red_point  += 1
+      end
+    end
+
     Window.draw(0, 0, @background_img)
     Window.drawFont(@title_x, 10, @title_str, @title_font, color: Util::YELLOW)
     Window.drawFont(@description_x, 400, @description_str, @description_font, color: Util::YELLOW)
+
+    blue_spoint_str = "青のスコアは#{blue_point}です 赤のスコアは#{red_point}です。"
+    Window.drawFont(@description_x, 430, blue_point_str, @description_font, color: Util::YELLOW)
 
     if Input.keyPush?(K_RETURN)
       exit

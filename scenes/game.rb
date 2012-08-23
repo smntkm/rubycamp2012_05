@@ -10,8 +10,8 @@ class Game
 	def initialize
 		@all_items = []
 		@map = Map.new self
-		#@players = [Player.new(@map), Player.new(@map)]
-		@players = [Player.new(@map)]
+		@players = [Player.new(@map, "player2.png"), Player.new(@map, "player1.png")]
+		#@players = [Player.new(@map)]
 		@current_player_num = 0
 		@dice = Dice.new
 		@dicing = true
@@ -38,8 +38,6 @@ class Game
 			player.draw
 		end
 
-		p @move_counter
-
 		#スペースキーを押したら画像の表示を消す
 		if @stopping
 			if Input.keyPush?(K_SPACE)
@@ -47,7 +45,7 @@ class Game
 				@stopping = false
 				@dicing = true
 				
-				if current_player.map.points[current_player.pos % 29].visited_by != @current_player_num && @move_counter == 0
+				if current_player.map.points[current_player.pos % 29].visited_by.nil? && @move_counter == 0
 					current_player.map.points[current_player.pos % 29].visited_by = @current_player_num
 				end
 			end

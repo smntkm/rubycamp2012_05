@@ -3,18 +3,18 @@
 class Player
 	attr_accessor :map, :pos
 
-	def initialize(map)
+	def initialize(map, player_file_name)
 		@map = map
 		@pos = rand(30)
 		@x, @y = @map.get_point_pos(@pos.to_i)
-		img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "player.png")
-		@img = Image.load(img_file)
+		img = File.join(File.dirname(__FILE__), "..", "..", "images", player_file_name)
+		@player_img = Image.load(img)
 	end
 
 	def move(counter, direction)
 		# 十字キーの入力を待つ
 		# 十字キーの方向に対応する位置へ移動する
-		point  = 0
+      point  = 0
 		begin
 			case direction 
 			when 0
@@ -50,6 +50,6 @@ class Player
 	end
 
 	def draw
-		Window.draw(@x, @y, @img)
+		Window.draw(@x, @y, @player_img)
 	end
 end
