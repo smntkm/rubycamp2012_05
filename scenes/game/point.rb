@@ -18,9 +18,10 @@ class Point
 
 	def set_event_flag flag = 0
 		unless @event
-			return false
+			return false # イベントがなければ
 		end
 
+		p "flag is #{flag}"
 		if flag == 1
 			@event.exec true
 		else
