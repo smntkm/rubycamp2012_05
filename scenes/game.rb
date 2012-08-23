@@ -20,6 +20,12 @@ class Game
 	end
 
 	def play
+		current_player = @players[@current_player_num]
+
+		if current_player.map.is_cleared? #Jump to Ending Scene if the stage is cleared.
+			Scene.set_scene(:ending)
+		end
+
 		@map.draw
 
 		@players.each_with_index do |player, player_number|
@@ -32,13 +38,6 @@ class Game
 			player.draw
 		end
 
-	#	@map.points.each do |point|
-	#		if point.get_event
-	#			point.get_event.draw
-	#		end
-	#	end
-
-		current_player = @players[@current_player_num]
 		if current_player.map.points[current_player.pos % 29].visited_by != @current_player_num && @move_counter == 0
 			current_player.map.points[current_player.pos % 29].visited_by = @current_player_num
 		end

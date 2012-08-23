@@ -173,6 +173,14 @@ class Map
 	  return @points[pos % 29].x, @points[pos % 29].y
   end
 
+  def is_cleared?
+	  count = 0
+	  @points.each do |point|
+		count += 1 if !point.visited_by.nil? && point.get_event
+	  end
+	  return count == 10
+  end
+
   def draw
 	  Window.draw(0, 0, @map_img)
 	  # @points.each do |point|
