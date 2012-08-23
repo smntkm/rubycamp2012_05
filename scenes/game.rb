@@ -45,7 +45,6 @@ class Game
 		#スペースキーを押したら画像の表示を消す
 		if @stopping
 			if Input.keyPush?(K_SPACE)
-				current_player.check_event 0
 				@stopping = false
 			end
 			return false
@@ -56,9 +55,14 @@ class Game
 			@dice.rotate
 			@dice.draw
 			if Input.keyPush?(K_SPACE)
+				current_player.check_event 0
 				@dicing = false
 			end
 		else
+			unless current_player.map.points[current_player.pos % 29].visited_by == @current_player_num
+				current_player.check_event 1
+				current_player.map.points[current_player.pos % 29].visited_by = @current_player_num
+			end
 			@dice.draw
 
 			#行きたい方向を決める

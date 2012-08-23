@@ -9,7 +9,6 @@ class Player
     @x, @y = @map.get_point_pos(@pos.to_i)
     img_file = File.join(File.dirname(__FILE__), "..", "..", "images", "player.png")
     @img = Image.load(img_file)
-    #@step = 0.1
   end
 
   def move(counter, direction)
@@ -31,9 +30,7 @@ class Player
 			point = @map.points[@pos.to_i].ref_point[3]
 			@x, @y = point.x, point.y
 		end
-		@pos += 1
 	  rescue => e
-		  p 'error occured!!'
 		  return counter
 	  end
     
